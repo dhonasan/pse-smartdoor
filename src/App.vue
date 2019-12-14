@@ -2,9 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link v-if="check_auth()" to="/">Dashboard</router-link>
+      <router-link v-if="check_auth()" to="dashboard">Dashboard</router-link>
+      <span v-if="check_auth()"> | </span>
       <router-link v-if="!check_auth()" to="/login">Login</router-link>
-      <router-link v-if="check_auth()" to="/logout">Logout</router-link>
+      <a v-if="check_auth()" @click.prevent="logout" href="/logout">Logout</a>
     </div>
     <router-view/>
   </div>
@@ -15,32 +16,16 @@
 
   export default {
     name: 'app',
-    data(){
-      return {
-        login_state: 'a',
-      }
-    },
-    // created: function() {
-    //   if(firebase.auth().currentUser==null){
-    //     this.login_state = 'Login'
-    //   } else {
-    //     this.login_state = 'Logout'
-    //   }
-    // },
     methods: {
       check_auth: function() {
-        return firebase.auth().currentUser != null
+        return firebase.auth().currentUser != null;
       },
       logout: function() {
         firebase.auth().signOut().then(
           () => {
             alert('You are logged out');
-            this.$router.push('home');
-          },
-          (err) => {
-            alert('Error' + err);
-            this.$router.push('home');
-          })
+            this.$router.push('/');
+          });
       }
     }
   }

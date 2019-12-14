@@ -2,8 +2,8 @@
   <div class="dashboard">
     <h1>Dashboard</h1>
     <h2>Hello, {{user}}</h2>
-    <h3>Status: {{lock_status}}</h3>
-    <button>{{lock_open_close}}</button>
+    <h3>Status: Door {{lock_status}}</h3>
+    <button>{{lock_open_close}} Door</button>
   </div>
 </template>
 
