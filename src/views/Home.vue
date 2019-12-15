@@ -7,6 +7,6 @@
 
 <style>
 h2 {
-  font-size: 10vw;
+  font-size: 20px;
 }
 </style>

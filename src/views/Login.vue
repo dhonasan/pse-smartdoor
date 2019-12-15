@@ -1,16 +1,16 @@
 <template>
   <div class="login">
     <h1>Login</h1>
-      <form @submit.prevent="login">
-        <label for="email">Email</label>
-        <input type="email" v-model="email" name="email" placeholder="E-mail" required>
-
-        <label for="password">Password</label>
-        <input type="password" v-model="password" name="password" placeholder="Password" required>
-        
-        <button>Login</button>
-      </form>
-      <h2>Don't have an account? <router-link to="signup">Sign Up</router-link></h2>
+      <b-form @submit.prevent="login">
+        <b-form-group prepend="@" label="E-mail address">
+          <b-form-input type="email" v-model="email" name="email" placeholder="E-mail" required></b-form-input>
+        </b-form-group>
+        <b-form-group label="Password">
+          <b-form-input type="password" v-model="password" name="password" placeholder="Password" required></b-form-input>
+        </b-form-group>
+        <b-button block>Login</b-button>
+      </b-form>
+      <p>Don't have an account? <router-link to="signup">Sign Up</router-link></p>
   </div>
 </template>
 
