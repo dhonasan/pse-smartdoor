@@ -3,7 +3,7 @@
     <h1>Dashboard</h1>
     <h2>Hello, {{user}}</h2>
     <h3>Status: Door {{lock_status}}</h3>
-    <button>{{lock_open_close}} Door</button>
+    <b-button>{{lock_open_close}} Door</b-button>
   </div>
 </template>
 

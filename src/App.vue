@@ -2,9 +2,11 @@
   <b-container id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link v-if="check_auth()" to="dashboard">Dashboard</router-link>
+      <router-link v-if="check_auth()" to="/dashboard">Dashboard</router-link>
       <span v-if="check_auth()"> | </span>
       <router-link v-if="!check_auth()" to="/login">Login</router-link>
+      <router-link v-if="check_auth()" to="/settings">Settings</router-link>
+      <span v-if="check_auth()"> | </span>
       <a v-if="check_auth()" @click.prevent="logout" href="/logout">Logout</a>
     </div>
     <router-view/>
@@ -12,26 +14,26 @@
 </template>
 
 <script>
-  import firebase from 'firebase';
-  import Vue from 'vue'
-  import BootstrapVue from 'bootstrap-vue'
+import firebase from 'firebase';
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
 
-  Vue.use(BootstrapVue)
-  export default {
-    name: 'app',
-    methods: {
-      check_auth: function() {
-        return firebase.auth().currentUser != null;
-      },
-      logout: function() {
-        firebase.auth().signOut().then(
-          () => {
-            alert('You are logged out');
-            this.$router.push('/');
-          });
-      }
+Vue.use(BootstrapVue)
+export default {
+  name: 'app',
+  methods: {
+    check_auth: function() {
+      return firebase.auth().currentUser != null;
+    },
+    logout: function() {
+      firebase.auth().signOut().then(
+        () => {
+          alert('You are logged out');
+          this.$router.push('/');
+        });
     }
   }
+}
 </script>
 
 <style lang="scss">
