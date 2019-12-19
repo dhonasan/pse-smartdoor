@@ -6,7 +6,9 @@
 </template>
 
 <script>
+
 export default {
+  name: 'home',
   // created: function() {
   //   if(this.$route.name == 'home'){
   //     document.body.className = 'home';

@@ -17,6 +17,8 @@ firebase.initializeApp({
   measurementId: "G-R4DY65T93Q"
 });
 
+export const db = firebase.firestore();
+
 firebase.auth().onAuthStateChanged(() => {
   new Vue({
     router,
