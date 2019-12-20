@@ -2,8 +2,8 @@
   <div class="dashboard">
     <h1>Dashboard</h1>
     <h2>Hello, {{user}}</h2>
-    <h3>Status: Door {{lock_status}}</h3>
-    <b-button @click="change_lock">{{lock_open_close}} Door</b-button>
+    <h3>Status: <font-awesome-icon :icon="lock_icon" /> {{lock_status}}</h3>
+    <b-button @click="change_lock" :variant="button_variant">{{lock_open_close}} Door</b-button>
   </div>
 </template>
 
@@ -19,7 +19,9 @@ export default {
     return {
       user: loggedUser.email,
       lock_status: '',
-      lock_open_close: ''
+      lock_open_close: '',
+      button_variant: '',
+      lock_icon: ''
     }
   },
   created: function(){
@@ -43,9 +45,13 @@ export default {
         if(doc.data().locked){
           this.lock_status = 'Locked';
           this.lock_open_close = 'Open';
+          this.button_variant = 'success';
+          this.lock_icon = 'lock';
         } else {
           this.lock_status = 'Unlocked';
           this.lock_open_close = 'Close';
+          this.button_variant = 'danger';
+          this.lock_icon = 'lock-open';
         }
       })
     }
