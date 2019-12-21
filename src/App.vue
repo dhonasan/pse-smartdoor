@@ -1,26 +1,42 @@
 <template>
   <b-container id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link v-if="check_auth()" to="/dashboard">Dashboard</router-link>
-      <span v-if="check_auth()"> | </span>
-      <router-link v-if="!check_auth()" to="/login">Login</router-link>
-      <router-link v-if="check_auth()" to="/settings">Settings</router-link>
-      <span v-if="check_auth()"> | </span>
-      <a v-if="check_auth()" @click.prevent="logout" href="/logout">Logout</a>
-    </div>
+    <b-navbar id="nav" toggleable="md" type="light" variant="light" class="mb-4">
+      <b-navbar-brand to="/">Smart Door</b-navbar-brand>
+      <b-navbar-toggle v-if="check_auth()" target="nav-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
+        <!-- Left -->
+        <b-navbar-nav v-if="check_auth()">
+          <b-nav-item to="/dashboard">Dashboard</b-nav-item>
+          <b-nav-item to="/dashboard/access-history">Access History</b-nav-item>
+        </b-navbar-nav>
+        <!-- Right -->
+        <b-navbar-nav v-if="check_auth()" class="ml-auto">
+          <b-nav-item-dropdown :text="User">
+            <b-dropdown-item to="/dashboard/settings">Settings</b-dropdown-item>
+            <b-dropdown-item @click.prevent="logout" href="/logout">Logout</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
+      <b-btn variant="outline-secondary" v-if="!check_auth()" to="/login">Login</b-btn>
+    </b-navbar>    
     <router-view/>
   </b-container>
 </template>
 
 <script>
-import firebase from 'firebase';
+import firebase from 'firebase'
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVue);
+
 export default {
   name: 'app',
+  data(){
+    return {
+      User: firebase.auth().currentUser.email
+    }
+  },
   methods: {
     check_auth: function() {
       return firebase.auth().currentUser != null;
@@ -44,7 +60,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  // color: #2c3e50;
 }
 
 #nav {
@@ -52,7 +68,7 @@ export default {
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    // color: #2c3e50;
 
     &.router-link-exact-active {
       color: #42b983;

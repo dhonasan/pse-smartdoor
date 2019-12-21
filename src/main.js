@@ -4,13 +4,14 @@ import './registerServiceWorker'
 import router from './router'
 import firebase from 'firebase'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 // Font Awesome
-library.add(faLock, faLockOpen)
+library.add(fas, far)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // Firebase

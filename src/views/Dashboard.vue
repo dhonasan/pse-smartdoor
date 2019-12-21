@@ -1,23 +1,18 @@
 <template>
   <div class="dashboard">
-    <h1>Dashboard</h1>
-    <h2>Hello, {{user}}</h2>
-    <h3>Status: <font-awesome-icon :icon="lock_icon" /> {{lock_status}}</h3>
+    <h1 class="py-1">Dashboard</h1>
+    <h3 class="py-1">Status: <font-awesome-icon :icon="lock_icon" /> {{lock_status}}</h3>
     <b-button @click="change_lock" :variant="button_variant">{{lock_open_close}} Door</b-button>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase';
 import { db } from '../main';
-
-var loggedUser = firebase.auth().currentUser;
 
 export default {
   name: 'dashboard',
   data(){
     return {
-      user: loggedUser.email,
       lock_status: '',
       lock_open_close: '',
       button_variant: '',

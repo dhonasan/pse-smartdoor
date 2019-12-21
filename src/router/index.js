@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '*',
-    name: '404',
+    name: 'NotFound',
     component: NotFound
   },
   {
@@ -35,13 +35,19 @@ const routes = [
     }
   },
   {
-    path: '/settings',
-    name: 'settings',
+    path: '/dashboard/settings',
     component: () => import('../views/Settings.vue'),
     meta: {
       requiresAuth: true
     }
   },
+  {
+    path: '/dashboard/access-history',
+    component: () => import('../views/Settings.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  }
 ]
 
 const router = new VueRouter({
