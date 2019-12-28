@@ -10,9 +10,6 @@ module.exports = {
       background_color: '#FBFAF5',
     },
 
-    workboxPluginMode: 'InjectManifest',
-    workboxOptions: {
-      swSrc: 'src/service-worker.js',
-    }
+    workboxPluginMode: 'GenerateSW'
   }
 }
