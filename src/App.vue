@@ -18,7 +18,7 @@
         </b-navbar-nav>
       </b-collapse>
       <b-btn variant="outline-secondary" v-if="!check_auth()" to="/login">Login</b-btn>
-    </b-navbar>    
+    </b-navbar>
     <router-view/>
   </b-container>
 </template>
@@ -34,7 +34,12 @@ export default {
   name: 'app',
   data(){
     return {
-      User: firebase.auth().currentUser.email
+      User: 'Loading'
+    }
+  },
+  created: function() {
+    if (this.check_auth()) {
+      this.User = firebase.auth().currentUser.email
     }
   },
   methods: {

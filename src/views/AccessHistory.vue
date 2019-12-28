@@ -13,14 +13,17 @@ export default {
   data() {
     return {
       items: [
-        // { opened_by: 'Loading', time: '00.00' },
+        // { time: '00.00', opened_by: 'Loading' },
       ]
     }
   },
   created: function() {
     db.collection('access_history').onSnapshot(col => {
       col.forEach(doc => {
-        this.items.push({"opened_by": doc.data().openedBy, "time": new Date(doc.data().time.seconds * 1000).toLocaleString()});
+        this.items.unshift({
+          "time": new Date(doc.data().time.seconds * 1000).toLocaleString(),
+          "opened_by": doc.data().openedBy
+          });
       })
     })
   }
