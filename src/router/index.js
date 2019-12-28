@@ -43,7 +43,7 @@ const routes = [
   },
   {
     path: '/dashboard/access-history',
-    component: () => import('../views/Settings.vue'),
+    component: () => import('../views/AccessHistory.vue'),
     meta: {
       requiresAuth: true
     }

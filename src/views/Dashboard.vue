@@ -13,14 +13,26 @@ export default {
   name: 'dashboard',
   data(){
     return {
-      lock_status: '',
-      lock_open_close: '',
-      button_variant: '',
-      lock_icon: ''
+      lock_status: 'Loading',
+      lock_open_close: 'Loading',
+      button_variant: 'primary',
+      lock_icon: 'spinner'
     }
   },
   created: function(){
-    this.check_lock();
+    db.collection('smartdoor').doc('status').onSnapshot(doc => {
+      if(doc.data().locked){
+        this.lock_status = 'Locked';
+        this.lock_open_close = 'Open';
+        this.button_variant = 'success';
+        this.lock_icon = 'lock';
+      } else {
+        this.lock_status = 'Unlocked';
+        this.lock_open_close = 'Close';
+        this.button_variant = 'danger';
+        this.lock_icon = 'lock-open';
+      }
+    })
   },    
   methods: {
     change_lock: function(){
@@ -33,23 +45,7 @@ export default {
           locked: true
         })
       }
-      this.check_lock();
     },
-    check_lock: function(){
-      db.collection('smartdoor').doc('status').get().then(doc =>{
-        if(doc.data().locked){
-          this.lock_status = 'Locked';
-          this.lock_open_close = 'Open';
-          this.button_variant = 'success';
-          this.lock_icon = 'lock';
-        } else {
-          this.lock_status = 'Unlocked';
-          this.lock_open_close = 'Close';
-          this.button_variant = 'danger';
-          this.lock_icon = 'lock-open';
-        }
-      })
-    }
   }
 }
 </script>

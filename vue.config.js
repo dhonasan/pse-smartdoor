@@ -2,14 +2,17 @@ module.exports = {
   pwa: {
     name: 'Smart Door',
     themeColor: '#4DBA87',
-    msTileColor: '#FBFAF5',
+    msTileColor: '#4DBA87', 
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
-    iconPaths:'src/assets/logo.png',
+
+    manifestOptions: {
+      background_color: '#FBFAF5',
+    },
 
     workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      swSrc: 'src/registerServiceWorker.js',
+      swSrc: 'src/service-worker.js',
     }
   }
 }
