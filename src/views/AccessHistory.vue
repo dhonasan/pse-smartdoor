@@ -18,9 +18,9 @@ export default {
     }
   },
   created: function() {
-    db.collection('access_history').onSnapshot(col => {
+    db.collection('access_history').orderBy('time').onSnapshot(col => {
       col.forEach(doc => {
-        this.items.unshift({
+        this.items.push({
           "time": new Date(doc.data().time.seconds * 1000).toLocaleString(),
           "opened_by": doc.data().openedBy
           });
